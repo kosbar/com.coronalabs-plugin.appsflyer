@@ -31,7 +31,7 @@
 // ----------------------------------------------------------------------------
 
 #define PLUGIN_NAME        "plugin.appsflyer"
-#define PLUGIN_VERSION     "1.0.1"
+#define PLUGIN_VERSION     "1.0.2"
 #define PLUGIN_SDK_VERSION [[AppsFlyerLib shared] getSDKVersion]
 
 static const char EVENT_NAME[]    = "analyticsRequest";
