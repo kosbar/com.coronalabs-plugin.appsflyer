@@ -30,8 +30,13 @@
 // Plugin Constants
 // ----------------------------------------------------------------------------
 
-#define PLUGIN_NAME        "plugin.appsflyer"
-#define PLUGIN_VERSION     "1.0.2"
+
+#if PLUGIN_STRICT
+    #define PLUGIN_NAME        "plugin.appsflyer.strict"
+#else
+    #define PLUGIN_NAME        "plugin.appsflyer"
+#endif
+#define PLUGIN_VERSION     "1.1.0"
 #define PLUGIN_SDK_VERSION [[AppsFlyerLib shared] getSDKVersion]
 
 static const char EVENT_NAME[]    = "analyticsRequest";
@@ -481,13 +486,25 @@ AppsFlyerPlugin::logEvent(lua_State *L)
     }
   }
 
-    [[AppsFlyerLib shared] logEvent:[NSString stringWithUTF8String:eventName] withValues:standardParams];
-
-  // send Corona Lua event
-  NSDictionary *coronaEvent = @{
-    @(CoronaEventPhaseKey()) : PHASE_RECORDED,
-  };
-  [appsflyerDelegate dispatchLuaEvent:coronaEvent];
+    
+    [[AppsFlyerLib shared] logEventWithEventName:[NSString stringWithUTF8String:eventName] eventValues:standardParams completionHandler:^(NSDictionary<NSString *,id> * _Nullable dictionary, NSError * _Nullable error) {
+        if(error){
+            
+            NSDictionary *coronaEvent = @{
+              @(CoronaEventPhaseKey()) : PHASE_FAILED,
+              @(CoronaEventDataKey()) : error.localizedDescription,
+              @(CoronaEventIsErrorKey()): @YES,
+            };
+            [appsflyerDelegate dispatchLuaEvent:coronaEvent];
+        }else{
+            // send Corona Lua event
+            NSDictionary *coronaEvent = @{
+              @(CoronaEventPhaseKey()) : PHASE_RECORDED,
+              @(CoronaEventIsErrorKey()): @NO,
+            };
+            [appsflyerDelegate dispatchLuaEvent:coronaEvent];
+        }
+    }];
 
   return 0;
 }
@@ -785,8 +802,12 @@ AppsFlyerPlugin::setHasUserConsent(lua_State *L)
 @end
 
 // ----------------------------------------------------------------------------
-
+#if PLUGIN_STRICT
+CORONA_EXPORT int luaopen_plugin_appsflyer_strict(lua_State *L)
+#else
 CORONA_EXPORT int luaopen_plugin_appsflyer(lua_State *L)
+#endif
 {
   return AppsFlyerPlugin::Open(L);
 }
+

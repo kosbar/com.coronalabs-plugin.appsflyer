@@ -17,6 +17,7 @@ import com.ansca.corona.CoronaRuntime;
 import com.ansca.corona.CoronaRuntimeListener;
 
 import com.appsflyer.AppsFlyerInAppPurchaseValidatorListener;
+import com.appsflyer.attribution.AppsFlyerRequestListener;
 import com.naef.jnlua.JavaFunction;
 import com.naef.jnlua.LuaType;
 import com.naef.jnlua.NamedJavaFunction;
@@ -41,7 +42,7 @@ import com.appsflyer.AppsFlyerConversionListener;
 @SuppressWarnings({"unused", "RedundantSuppression"})
 public class LuaLoader implements JavaFunction, CoronaRuntimeListener {
     private static final String PLUGIN_NAME = "plugin.appsflyer";
-    private static final String PLUGIN_VERSION = "1.0.2";
+    private static final String PLUGIN_VERSION = "1.1.0";
     private static final String PLUGIN_SDK_VERSION = AppsFlyerLib.getInstance().getSdkVersion();
 
     private static final String EVENT_NAME = "analyticsRequest";
@@ -546,7 +547,26 @@ public class LuaLoader implements JavaFunction, CoronaRuntimeListener {
                     @Override
                     public void run() {
                         // send parameters to AppsFlyer
-                        AppsFlyerLib.getInstance().logEvent(coronaActivity.getApplicationContext(), eventName, standardParams);
+
+                        AppsFlyerLib.getInstance().logEvent(coronaActivity.getApplicationContext(), eventName, standardParams, new AppsFlyerRequestListener() {
+                            @Override
+                            public void onSuccess() {
+                                Map<String, Object> coronaEvent = new HashMap<>();
+                                coronaEvent.put(EVENT_PHASE_KEY, PHASE_RECORDED);
+                                coronaEvent.put(EVENT_IS_ERROR_KEY, false);
+                                dispatchLuaEvent(coronaEvent);
+                            }
+
+                            @Override
+                            public void onError(int i, String s) {
+                                Map<String, Object> coronaEvent = new HashMap<>();
+                                coronaEvent.put(EVENT_PHASE_KEY, PHASE_FAILED);
+                                coronaEvent.put(EVENT_IS_ERROR_KEY, true);
+                                coronaEvent.put(EVENT_DATA_KEY, s);
+                                dispatchLuaEvent(coronaEvent);
+
+                            }
+                        });
                         // send Corona Lua event
                         Map<String, Object> coronaEvent = new HashMap<>();
                         coronaEvent.put(EVENT_PHASE_KEY, PHASE_RECORDED);
