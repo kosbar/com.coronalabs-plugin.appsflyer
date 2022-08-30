@@ -36,7 +36,7 @@
 #else
     #define PLUGIN_NAME        "plugin.appsflyer"
 #endif
-#define PLUGIN_VERSION     "1.1.0"
+#define PLUGIN_VERSION     "1.2.0"
 #define PLUGIN_SDK_VERSION [[AppsFlyerLib shared] getSDKVersion]
 
 static const char EVENT_NAME[]    = "analyticsRequest";
@@ -371,7 +371,7 @@ AppsFlyerPlugin::init(lua_State *L)
     [AppsFlyerLib shared].delegate = appsflyerDelegate;
     [AppsFlyerLib shared].anonymizeUser = !localHasUserConsent;
     [AppsFlyerLib shared].isDebug = debugMode;
-
+    [[AppsFlyerLib shared] start];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
         // send Corona Lua event
         NSDictionary *coronaEvent = @{
