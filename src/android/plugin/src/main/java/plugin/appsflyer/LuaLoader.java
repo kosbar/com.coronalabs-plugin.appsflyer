@@ -43,7 +43,8 @@ import com.appsflyer.AppsFlyerConversionListener;
 public class LuaLoader implements JavaFunction, CoronaRuntimeListener {
     private static final String PLUGIN_NAME = "plugin.appsflyer";
     private static final String PLUGIN_VERSION = "1.1.0";
-    private static final String PLUGIN_SDK_VERSION = AppsFlyerLib.getInstance().getSdkVersion();
+    private static String PLUGIN_SDK_VERSION() { return AppsFlyerLib.getInstance().getSdkVersion(); };
+
 
     private static final String EVENT_NAME = "analyticsRequest";
     private static final String PROVIDER_NAME = "appsflyer";
@@ -398,7 +399,7 @@ public class LuaLoader implements JavaFunction, CoronaRuntimeListener {
                         AppsFlyerLib.getInstance().anonymizeUser(!fLocalHasUserConsent);
 
                         // Log plugin version to device log
-                        Log.i(CORONA_TAG, PLUGIN_NAME + ": " + PLUGIN_VERSION + " (SDK: " + PLUGIN_SDK_VERSION + ")");
+                        Log.i(CORONA_TAG, PLUGIN_NAME + ": " + PLUGIN_VERSION + " (SDK: " + PLUGIN_SDK_VERSION() + ")");
 
                         // send Corona Lua event
                         Map<String, Object> coronaEvent = new HashMap<>();
@@ -438,11 +439,11 @@ public class LuaLoader implements JavaFunction, CoronaRuntimeListener {
                 coronaActivity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Log.i(CORONA_TAG, PLUGIN_NAME + ": " + PLUGIN_VERSION + " (SDK: " + PLUGIN_SDK_VERSION + ")");
+                        Log.i(CORONA_TAG, PLUGIN_NAME + ": " + PLUGIN_VERSION + " (SDK: " + PLUGIN_SDK_VERSION() + ")");
                         // Dispatch the Lua event
                         HashMap<String, Object> event = new HashMap<>();
                         event.put("pluginVersion", PLUGIN_VERSION);
-                        event.put("sdkVersion", PLUGIN_SDK_VERSION);
+                        event.put("sdkVersion", PLUGIN_SDK_VERSION());
                         dispatchLuaEvent(event);
                     }
                 });
