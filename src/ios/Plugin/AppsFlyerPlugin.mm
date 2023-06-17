@@ -19,6 +19,7 @@
 #import "AppsFlyerPlugin.h"
 #import <AppsFlyerLib/AppsFlyerLib.h>
 
+
 // some macros to make life easier, and code more readable
 #define UTF8StringWithFormat(format, ...) [[NSString stringWithFormat:format, ##__VA_ARGS__] UTF8String]
 #define MsgFormat(format, ...) [NSString stringWithFormat:format, ##__VA_ARGS__]
@@ -364,13 +365,13 @@ AppsFlyerPlugin::init(lua_State *L)
     logMsg(L, ERROR_MSG, MsgFormat(@"options.appID is required"));
     return 0;
   }
-  
-  // initialize the event tracker
+    // initialize the event tracker
     [AppsFlyerLib shared].appsFlyerDevKey = [NSString stringWithUTF8String:devKey];
     [AppsFlyerLib shared].appleAppID = [NSString stringWithUTF8String:appID];
     [AppsFlyerLib shared].delegate = appsflyerDelegate;
     [AppsFlyerLib shared].anonymizeUser = !localHasUserConsent;
     [AppsFlyerLib shared].isDebug = debugMode;
+    [[AppsFlyerLib shared] waitForATTUserAuthorizationWithTimeoutInterval:60.0];
     [[AppsFlyerLib shared] start];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
         // send Corona Lua event

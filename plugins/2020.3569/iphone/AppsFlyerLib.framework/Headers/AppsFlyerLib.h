@@ -2,16 +2,16 @@
 //  AppsFlyerLib.h
 //  AppsFlyerLib
 //
-//  AppsFlyer iOS SDK 6.8.1 (86)
-//  Copyright (c) 2012-2020 AppsFlyer Ltd. All rights reserved.
+//  AppsFlyer iOS SDK 6.11.2 (123)
+//  Copyright (c) 2012-2023 AppsFlyer Ltd. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-#import "AppsFlyerCrossPromotionHelper.h"
-#import "AppsFlyerShareInviteHelper.h"
-#import "AppsFlyerDeepLinkResult.h"
-#import "AppsFlyerDeepLink.h"
+#import <AppsFlyerLib/AppsFlyerCrossPromotionHelper.h>
+#import <AppsFlyerLib/AppsFlyerShareInviteHelper.h>
+#import <AppsFlyerLib/AppsFlyerDeepLinkResult.h>
+#import <AppsFlyerLib/AppsFlyerDeepLink.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -136,13 +136,29 @@ NS_ASSUME_NONNULL_BEGIN
 typedef enum  {
     /// None
     EmailCryptTypeNone = 0,
-    /// SHA1
-    EmailCryptTypeSHA1 = 1,
-    /// MD5
-    EmailCryptTypeMD5 = 2,
     /// SHA256
     EmailCryptTypeSHA256 = 3
 } EmailCryptType;
+
+typedef NS_CLOSED_ENUM(NSInteger, AFSDKPlugin) {
+    AFSDKPluginIOSNative,
+    AFSDKPluginUnity,
+    AFSDKPluginFlutter,
+    AFSDKPluginReactNative,
+    AFSDKPluginAdobeAir,
+    AFSDKPluginAdobeMobile,
+    AFSDKPluginCocos2dx,
+    AFSDKPluginCordova,
+    AFSDKPluginMparticle,
+    AFSDKPluginNativeScript,
+    AFSDKPluginExpo,
+    AFSDKPluginUnreal,
+    AFSDKPluginXamarin,
+    AFSDKPluginCapacitor,
+    AFSDKPluginSegment,
+    AFSDKPluginAdobeSwiftAEP
+} NS_SWIFT_NAME(Plugin);
+
 
 NS_SWIFT_NAME(DeepLinkDelegate)
 @protocol AppsFlyerDeepLinkDelegate <NSObject>
@@ -302,6 +318,9 @@ NS_SWIFT_NAME(waitForATTUserAuthorization(timeoutInterval:));
  */
 @property(atomic) BOOL disableCollectASA;
 
+/**
+ Disable Apple Ads Attribution API +[AAAtribution attributionTokenWithError:]
+ */
 @property(nonatomic) BOOL disableAppleAdsAttribution;
 
 /**
@@ -371,6 +390,14 @@ NS_SWIFT_NAME(waitForATTUserAuthorization(timeoutInterval:));
  </pre>
  */
 @property(nonatomic, nullable) NSString *currentDeviceLanguage;
+
+/**
+ Internal API. Please don't use.
+ */
+- (void)setPluginInfoWith:(AFSDKPlugin)plugin
+            pluginVersion:(NSString *)version
+         additionalParams:(NSDictionary * _Nullable)additionalParams
+NS_SWIFT_NAME(setPluginInfo(plugin:version:additionalParams:));
 
 /**
  Enable the collection of Facebook Deferred AppLinks
