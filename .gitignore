@@ -1,2 +1,4 @@
 plugins/*.tgz
 *xcuser*
+.DS_Store
+**/.DS_Store
