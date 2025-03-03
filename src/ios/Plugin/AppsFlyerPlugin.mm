@@ -205,7 +205,7 @@ AppsFlyerPlugin::Open( lua_State *L )
       {"setHasUserConsent", setHasUserConsent},
       {"logPurchase", logPurchase},
       {"getAppsFlyerUID", getAppsFlyerUID},
-      {"logAdRevenue", logAdRevenue}
+      {"logAdRevenue", logAdRevenue},
       {NULL, NULL}
     };
     
