@@ -131,7 +131,7 @@ public: // plugin API
   static int setHasUserConsent(lua_State *L);
   static int logPurchase(lua_State *L);
   static int getAppsFlyerUID(lua_State *L);
-  static int logAdRevenue(lua_State* L);
+  static int logRevenueAds(lua_State* L);
 
 private: // internal helper functions
   static void logMsg(lua_State *L, NSString *msgType,  NSString *errorMsg);
@@ -205,7 +205,7 @@ AppsFlyerPlugin::Open( lua_State *L )
       {"setHasUserConsent", setHasUserConsent},
       {"logPurchase", logPurchase},
       {"getAppsFlyerUID", getAppsFlyerUID},
-      {"logAdRevenue", logAdRevenue},
+      {"logRevenueAds", logRevenueAds},
       {NULL, NULL}
     };
     
@@ -669,16 +669,16 @@ AppsFlyerPlugin::setHasUserConsent(lua_State *L)
 }
 
 int
-AppsFlyerPlugin::logAdRevenue(lua_State* L)
+AppsFlyerPlugin::logRevenueAds(lua_State* L)
 {
-    Self *context = ToLibrary(L);
+    Self* context = ToLibrary(L);
 
     if (!context || !isSDKInitialized(L)) { // abort if no valid context
         return 0;
     }
 
     Self& library = *context;
-    library.functionSignature = @"appsflyer.logAdRevenue()";
+    library.functionSignature = @"appsflyer.logRevenueAds()";
 
     // check number or args
     int nargs = lua_gettop(L);
@@ -687,81 +687,43 @@ AppsFlyerPlugin::logAdRevenue(lua_State* L)
         return 0;
     }
 
-    NSString* monetizationNetwork = @"";
-    AppsFlyerAdRevenueMediationNetworkType* mediationNetwork = NULL;
-    NSString* currencyIso4217Code = @"";
-    NSNumber* eventRevenue = NULL;
-    NSMutableDictionary *additionalParams = [NSMutableDictionary new];
+    NSString* revenueString = [NSString stringWithUTF8String: lua_tostring(L, -1)];
+    NSLog(@"revenueString: %@", revenueString);
+    NSData* data = [revenueString dataUsingEncoding: NSUTF8StringEncoding];
+    NSError* error = nil;
 
-    if (lua_type(L, 1) == LUA_TTABLE) {
-        // traverse and validate all the properties
-        for (lua_pushnil(L); lua_next(L, 1) != 0; lua_pop(L, 1)) {
-            const char *key = lua_tostring(L, -2);
+    NSDictionary* revenueDictionary = [NSJSONSerialization JSONObjectWithData: data
+                                                                      options: NSJSONReadingMutableContainers
+                                                                        error: &error];
+    if (error) {
+        NSLog(@"Error: %@", error.localizedDescription);
 
-            if (UTF8IsEqual(key, "monetizationNetwork")) {
-                if (lua_type(L, -1) == LUA_TSTRING) {
-                    monetizationNetwork = [NSString stringWithUTF8String: lua_tostring(L, -1)];
-                }
-
-                else {
-                    logMsg(L, ERROR_MSG, MsgFormat(@"adRevenueData.monetizationNetwork (string) expected, got %s", luaL_typename(L, -1)));
-                    return 0;
-                }
-
-            } else if (UTF8IsEqual(key, "mediationNetwork")) {
-                if (lua_type(L, -1) == LUA_TSTRING) {
-                    *mediationNetwork = (AppsFlyerAdRevenueMediationNetworkType)strtoul(lua_tostring(L, -1), NULL, 10);
-                }
-
-                else {
-                    logMsg(L, ERROR_MSG, MsgFormat(@"adRevenueData.mediationNetwork (string) expected, got %s", luaL_typename(L, -1)));
-                    return 0;
-                }
-
-            } else if (UTF8IsEqual(key, "currencyIso4217Code")) {
-                if (lua_type(L, -1) == LUA_TSTRING) {
-                    currencyIso4217Code = [NSString stringWithUTF8String: lua_tostring(L, -1)];
-                }
-
-                else {
-                    logMsg(L, ERROR_MSG, MsgFormat(@"adRevenueData.currencyIso4217Code (string) expected, got %s", luaL_typename(L, -1)));
-                    return 0;
-                }
-
-            } else if (UTF8IsEqual(key, "eventRevenue")) {
-                if (lua_type(L, -1) == LUA_TSTRING) {
-                    [eventRevenue initWithChar: *lua_tostring(L, -1)];
-                }
-
-                else {
-                    logMsg(L, ERROR_MSG, MsgFormat(@"adRevenueData.eventRevenue (string) expected, got %s", luaL_typename(L, -1)));
-                    return 0;
-                }
-
-            } else if (UTF8IsEqual(key, "additionalParams")) {
-                if (lua_type(L, -1) == LUA_TTABLE) {
-                    // we need gettop() here since -1 will return nil
-                    // we also need to make it mutable (see below for float64 to float32 conversion)
-                    additionalParams = [CoronaLuaCreateDictionary(L, lua_gettop(L)) mutableCopy];
-                }
-
-                else {
-                    logMsg(L, ERROR_MSG, MsgFormat(@"adRevenueData.additionalParams (table) expected, got %s", luaL_typename(L, -1)));
-                    return 0;
-                }
-
-            } else {
-                logMsg(L, ERROR_MSG, MsgFormat(@"Invalid option '%s'", key));
-                return 0;
-            }
-        }
-
-    } else {
-        logMsg(L, ERROR_MSG, MsgFormat(@"purchaseData (table) expected, got %s", luaL_typename(L, 1)));
         return 0;
+    } else {
+        NSLog(@"%@", [revenueDictionary debugDescription]);
     }
 
-    AFAdRevenueData* adRevenueData = [[AFAdRevenueData alloc] initWithMonetizationNetwork:monetizationNetwork mediationNetwork:*mediationNetwork currencyIso4217Code:currencyIso4217Code eventRevenue:eventRevenue];
+    NSString* countryCode = revenueDictionary[@"countryCode"];
+    NSString* adUnitName = revenueDictionary[@"adUnitName"];
+    NSString* adSource = revenueDictionary[@"adSource"];
+    NSString* adFormat = revenueDictionary[@"adFormat"];
+    NSNumber* revenueValue = revenueDictionary[@"revenueValue"];
+
+    //TODO: Remove hardcoded values, get them from Lua
+    NSString* monetizationNetwork = @"ironsource";
+    AppsFlyerAdRevenueMediationNetworkType mediationNetwork = AppsFlyerAdRevenueMediationNetworkTypeApplovinMax;
+    NSString* currencyIso4217Code = @"USD";
+
+//    NSNumber* value = (NSNumber*)revenueDictionary[@"mediationNetwork"];
+//    AppsFlyerAdRevenueMediationNetworkType* mediationNetwork = (AppsFlyerAdRevenueMediationNetworkType*)[value unsignedIntegerValue];
+//    NSString* currencyIso4217Code = revenueDictionary[@"currencyIso4217Code"];
+
+    NSMutableDictionary *additionalParams = [NSMutableDictionary new];
+    [additionalParams setObject:countryCode forKey:@"countryCode"];
+    [additionalParams setObject:adUnitName forKey:@"adUnitName"];
+    [additionalParams setObject:adFormat forKey:@"adFormat"];
+
+    AFAdRevenueData* adRevenueData = [[AFAdRevenueData alloc] initWithMonetizationNetwork:monetizationNetwork mediationNetwork:mediationNetwork currencyIso4217Code:currencyIso4217Code eventRevenue:revenueValue];
 
     [[AppsFlyerLib shared] logAdRevenue:adRevenueData additionalParameters:additionalParams];
 
