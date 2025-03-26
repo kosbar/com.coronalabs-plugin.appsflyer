@@ -124,7 +124,7 @@ val parsedBuildProperties: JsonObject = run {
 }
 
 extra["minSdkVersion"] = parsedBuildProperties.lookup<Any?>("buildSettings.android.minSdkVersion").firstOrNull()?.toString()?.toIntOrNull()
-        ?: 15
+        ?: 21
 
 val coronaBuilder = if (windows) {
     "$nativeDir/Corona/win/bin/CoronaBuilder.exe"
@@ -181,14 +181,15 @@ if (configureCoronaPlugins == "YES") {
 //</editor-fold>
 
 android {
+    namespace = coronaAppPackage
     lintOptions {
         isCheckReleaseBuilds = false
     }
 //    buildToolsVersion("29.0.3")
-    compileSdkVersion(32)
+    compileSdkVersion(35)
     defaultConfig {
         applicationId = coronaAppPackage
-        targetSdkVersion(32)
+        targetSdkVersion(35)
         minSdkVersion(extra["minSdkVersion"] as Int)
         versionCode = coronaVersionCode
         versionName = coronaVersionName
@@ -218,15 +219,11 @@ android {
     }
 
     applicationVariants.all {
-        generateBuildConfigProvider!!.configure {
-            enabled = false
-        }
+        generateBuildConfigProvider?.get()?.enabled = false
     }
     testOptions {
         testVariants.all {
-            generateBuildConfigProvider!!.configure {
-                enabled = false
-            }
+            generateBuildConfigProvider?.get()?.enabled = false
         }
     }
     val mainSourceSet = sourceSets["main"]

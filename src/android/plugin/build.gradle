@@ -1,11 +1,11 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 32
-
+    compileSdkVersion 34
+    namespace = "plugin.appsflyer"
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 32
+        targetSdkVersion 35
         versionCode 1
         versionName "1.0"
     }
@@ -14,7 +14,7 @@ repositories {
     mavenCentral()
 }
 dependencies {
-    implementation 'com.appsflyer:af-android-sdk:6.10.1'
+    implementation 'com.appsflyer:af-android-sdk:6.16.2'
 
     implementation ':Corona@aar'
 }
