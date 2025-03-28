@@ -68,15 +68,13 @@ eventDataTextBox = native.newTextBox( display.contentCenterX, display.contentHei
 eventDataTextBox.placeholder = "Event data will appear here"
 
 local revenueEvent = {
-  phase = "impressionData",
-  impressionID = "inter_videoa",
-  revenuePrecision = "exact",
-  placementName = nil,
+  monetizationNetwork = "ironsource",
+  currencyIso4217Code = "USD",
+  value = 0.0021656780242919923,
   countryCode = "TJ",
   adUnitName = "da5529f386dd83cf",
   adSource = "AppLovin",
-  adFormat = "rewardedVideo",
-  value = "0.0021656780242919923"
+  adFormat = "rewardedVideo"
 }
 
 local logCustomEventButton = widget.newButton {
