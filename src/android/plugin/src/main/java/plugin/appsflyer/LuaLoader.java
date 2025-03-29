@@ -22,7 +22,7 @@ import com.appsflyer.AppsFlyerInAppPurchaseValidatorListener;
 import com.appsflyer.MediationNetwork;
 import com.appsflyer.attribution.AppsFlyerRequestListener;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+import com.google.gson.JsonObject;
 import com.naef.jnlua.JavaFunction;
 import com.naef.jnlua.LuaType;
 import com.naef.jnlua.NamedJavaFunction;
@@ -31,7 +31,6 @@ import com.naef.jnlua.LuaState;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Map;
-import java.util.Objects;
 
 import android.util.Log;
 
@@ -759,17 +758,16 @@ public class LuaLoader implements JavaFunction, CoronaRuntimeListener {
             }
 
             Gson gson = new Gson();
-            Map <String, Object> revenueData = gson.fromJson(luaState.toString(-1),
-                    new TypeToken<Map <String, Object>>(){}.getType());
+            JsonObject revenueData = gson.fromJson(luaState.toString( -1), JsonObject.class);
 
-            String monetizationNetwork = (String)(Objects.requireNonNull(revenueData.get("monetizationNetwork")));
-            String currencyIso4217Code = (String)(Objects.requireNonNull(revenueData.get("currencyIso4217Code")));
-            double revenue = (double)(Objects.requireNonNull(revenueData.get("value"))); //value is IronSource style name
-            String countryCode = (String)revenueData.get("countryCode");
-            String adUnitName = (String)revenueData.get("adUnitName");
-            String adType = (String)revenueData.get("adFormat"); //adFormat is IronSource style name
+            String monetizationNetwork = revenueData.get("monetizationNetwork").getAsString();
+            String currencyIso4217Code = revenueData.get("currencyIso4217Code").getAsString();
+            double revenue = revenueData.get("value").getAsDouble(); //'value' is IronSource style name
+            String countryCode = revenueData.get("countryCode").getAsString();
+            String adUnitName = revenueData.get("adUnitName").getAsString();
+            String adType = revenueData.get("adFormat").getAsString(); //'adFormat' is IronSource style name
 
-            String medNetwork = ((String) Objects.requireNonNull(revenueData.get("adSource"))).toUpperCase(); //adSource is IronSource style name
+            String medNetwork = revenueData.get("adSource").getAsString().toUpperCase(); //'adSource' is IronSource style name
             MediationNetwork mediationNetwork = MediationNetwork.CUSTOM_MEDIATION;
 
 // medNetwork must be one of: IRONSOURCE, APPLOVIN_MAX, GOOGLE_ADMOB, FYBER, APPODEAL, ADMOST, TOPON, TRADPLUS, YANDEX, CHARTBOOST, UNITY, TOPON_PTE,
