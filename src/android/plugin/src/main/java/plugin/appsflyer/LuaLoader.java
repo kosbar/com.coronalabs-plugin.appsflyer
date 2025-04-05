@@ -16,8 +16,13 @@ import com.ansca.corona.CoronaEnvironment;
 import com.ansca.corona.CoronaRuntime;
 import com.ansca.corona.CoronaRuntimeListener;
 
+import com.appsflyer.AFAdRevenueData;
+import com.appsflyer.AdRevenueScheme;
 import com.appsflyer.AppsFlyerInAppPurchaseValidatorListener;
+import com.appsflyer.MediationNetwork;
 import com.appsflyer.attribution.AppsFlyerRequestListener;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.naef.jnlua.JavaFunction;
 import com.naef.jnlua.LuaType;
 import com.naef.jnlua.NamedJavaFunction;
@@ -43,8 +48,10 @@ import com.appsflyer.AppsFlyerConversionListener;
 public class LuaLoader implements JavaFunction, CoronaRuntimeListener {
     private static final String PLUGIN_NAME = "plugin.appsflyer";
     private static final String PLUGIN_VERSION = "1.1.0";
-    private static String PLUGIN_SDK_VERSION() { return AppsFlyerLib.getInstance().getSdkVersion(); };
 
+    private static String PLUGIN_SDK_VERSION() {
+        return AppsFlyerLib.getInstance().getSdkVersion();
+    }
 
     private static final String EVENT_NAME = "analyticsRequest";
     private static final String PROVIDER_NAME = "appsflyer";
@@ -115,7 +122,8 @@ public class LuaLoader implements JavaFunction, CoronaRuntimeListener {
                 new GetVersion(),
                 new SetHasUserConsent(),
                 new GetAppsFlyerUID(),
-                new LogPurchase()
+                new LogPurchase(),
+                new LogRevenueAds()
         };
         String libName = L.toString(1);
         L.register(libName, luaFunctions);
@@ -722,6 +730,68 @@ public class LuaLoader implements JavaFunction, CoronaRuntimeListener {
                         AppsFlyerLib.getInstance().validateAndLogInAppPurchase(coronaActivity.getApplicationContext(), fPublicKey, fSignature, fPurchaseData, fPrice, fCurrency, fParams);
                     }
                 });
+            }
+
+            return 0;
+        }
+    }
+
+    private class LogRevenueAds implements NamedJavaFunction {
+
+        @Override
+        public String getName() {
+            return "logRevenueAds";
+        }
+
+        @Override
+        public int invoke(LuaState luaState) {
+            functionSignature = "appsflyer.logRevenueAds()";
+
+            if (!isSDKInitialized()) {
+                return 0;
+            }
+
+            int nargs = luaState.getTop();
+            if (nargs != 1) {
+                logMsg(ERROR_MSG, "Expected 1 argument, got " + nargs);
+                return 0;
+            }
+
+            Gson gson = new Gson();
+            JsonObject revenueData = gson.fromJson(luaState.toString( -1), JsonObject.class);
+
+            String monetizationNetwork = revenueData.get("monetizationNetwork").getAsString();
+            String currencyIso4217Code = revenueData.get("currencyIso4217Code").getAsString();
+            double revenue = revenueData.get("value").getAsDouble(); //'value' is IronSource style name
+            String countryCode = revenueData.get("countryCode").getAsString();
+            String adUnitName = revenueData.get("adUnitName").getAsString();
+            String adType = revenueData.get("adFormat").getAsString(); //'adFormat' is IronSource style name
+
+            String medNetwork = revenueData.get("adSource").getAsString().toUpperCase(); //'adSource' is IronSource style name
+            MediationNetwork mediationNetwork = MediationNetwork.CUSTOM_MEDIATION;
+
+// medNetwork must be one of: IRONSOURCE, APPLOVIN_MAX, GOOGLE_ADMOB, FYBER, APPODEAL, ADMOST, TOPON, TRADPLUS, YANDEX, CHARTBOOST, UNITY, TOPON_PTE,
+            for(MediationNetwork medNet : MediationNetwork.values()) {
+                if (medNet.toString().contains(medNetwork)) {
+                   mediationNetwork = medNet;
+               }
+            }
+
+            AFAdRevenueData adRevenueData = new AFAdRevenueData(
+                    monetizationNetwork,
+                    mediationNetwork,
+                    currencyIso4217Code,
+                    revenue
+            );
+
+            Map<String, Object> additionalParameters = new HashMap<>();
+            additionalParameters.put(AdRevenueScheme.COUNTRY, countryCode);
+            additionalParameters.put(AdRevenueScheme.AD_UNIT, adUnitName);
+            additionalParameters.put(AdRevenueScheme.AD_TYPE, adType);
+
+            final CoronaActivity coronaActivity = CoronaEnvironment.getCoronaActivity();
+            if (coronaActivity != null) {
+                coronaActivity.runOnUiThread(() -> AppsFlyerLib.getInstance().logAdRevenue(adRevenueData, additionalParameters));
             }
 
             return 0;

@@ -131,10 +131,12 @@ public: // plugin API
   static int setHasUserConsent(lua_State *L);
   static int logPurchase(lua_State *L);
   static int getAppsFlyerUID(lua_State *L);
+  static int logRevenueAds(lua_State* L);
 
 private: // internal helper functions
   static void logMsg(lua_State *L, NSString *msgType,  NSString *errorMsg);
   static bool isSDKInitialized(lua_State *L);
+  static AppsFlyerAdRevenueMediationNetworkType mediationNetworkTypeFromString(NSString* mediationNetwork);
   
 private:
   NSString *functionSignature;                                  // used in logMsg to identify function
@@ -178,6 +180,35 @@ AppsFlyerPlugin::isSDKInitialized(lua_State *L)
   return true;
 }
 
+// Добавьте этот метод в ваш класс или в категорию (например, в .m файл)
+AppsFlyerAdRevenueMediationNetworkType
+AppsFlyerPlugin::mediationNetworkTypeFromString (NSString* mediationNetwork) {
+    NSDictionary<NSString*, NSNumber*>* mapping = @{
+        @"GOOGLE_ADMOB": @(AppsFlyerAdRevenueMediationNetworkTypeGoogleAdMob),
+        @"IRONSOURCE": @(AppsFlyerAdRevenueMediationNetworkTypeIronSource),
+        @"APPLOVIN_MAX": @(AppsFlyerAdRevenueMediationNetworkTypeApplovinMax),
+        @"FYBER": @(AppsFlyerAdRevenueMediationNetworkTypeFyber),
+        @"APPODEAL": @(AppsFlyerAdRevenueMediationNetworkTypeAppodeal),
+        @"ADMOST": @(AppsFlyerAdRevenueMediationNetworkTypeAdmost),
+        @"TOPON": @(AppsFlyerAdRevenueMediationNetworkTypeTopon),
+        @"TRADPLUS": @(AppsFlyerAdRevenueMediationNetworkTypeTradplus),
+        @"YANDEX": @(AppsFlyerAdRevenueMediationNetworkTypeYandex),
+        @"CHARTBOOST": @(AppsFlyerAdRevenueMediationNetworkTypeChartBoost),
+        @"UNITY": @(AppsFlyerAdRevenueMediationNetworkTypeUnity),
+        @"TOPON_PTE": @(AppsFlyerAdRevenueMediationNetworkTypeToponPte),
+        @"CUSTOM_MEDIATION": @(AppsFlyerAdRevenueMediationNetworkTypeCustom),
+        @"DIRECT_MONETIZATION_NETWORK": @(AppsFlyerAdRevenueMediationNetworkTypeDirectMonetization)
+    };
+
+    for (NSString* key in mapping) {
+        if ([key containsString: mediationNetwork]) {
+            NSNumber *value = mapping[key];
+            return (AppsFlyerAdRevenueMediationNetworkType)value.unsignedIntegerValue;
+        }
+    }
+
+    return AppsFlyerAdRevenueMediationNetworkTypeCustom;
+}
 
 // ----------------------------------------------------------------------------
 // plugin implementation
@@ -204,6 +235,7 @@ AppsFlyerPlugin::Open( lua_State *L )
       {"setHasUserConsent", setHasUserConsent},
       {"logPurchase", logPurchase},
       {"getAppsFlyerUID", getAppsFlyerUID},
+      {"logRevenueAds", logRevenueAds},
       {NULL, NULL}
     };
     
@@ -664,6 +696,67 @@ AppsFlyerPlugin::setHasUserConsent(lua_State *L)
         logMsg(L, ERROR_MSG, MsgFormat(@"Boolean expected, got %s", luaL_typename(L, 1)));
         return 0;
     }
+}
+
+int
+AppsFlyerPlugin::logRevenueAds(lua_State* L)
+{
+    Self* context = ToLibrary(L);
+
+    if (!context || !isSDKInitialized(L)) { // abort if no valid context
+        return 0;
+    }
+
+    Self& library = *context;
+    library.functionSignature = @"appsflyer.logRevenueAds()";
+
+    // check number or args
+    int nargs = lua_gettop(L);
+    if (nargs != 1) {
+        logMsg(L, ERROR_MSG, MsgFormat(@"Expected 1 argument, got %d", nargs));
+        return 0;
+    }
+
+    NSString* revenueString = [NSString stringWithUTF8String: lua_tostring(L, -1)];
+    NSLog(@"revenueString: %@", revenueString);
+    NSData* data = [revenueString dataUsingEncoding: NSUTF8StringEncoding];
+    NSError* error = nil;
+
+    NSDictionary* revenueDictionary = [NSJSONSerialization JSONObjectWithData: data
+                                                                      options: NSJSONReadingMutableContainers
+                                                                        error: &error];
+    if (error) {
+        NSLog(@"Error: %@", error.localizedDescription);
+
+        return 0;
+    } else {
+        NSLog(@"%@", [revenueDictionary debugDescription]);
+    }
+
+    NSString* monetizationNetwork = revenueDictionary[@"monetizationNetwork"];
+    NSString* currencyIso4217Code = revenueDictionary[@"currencyIso4217Code"];
+    NSNumber* revenue = revenueDictionary[@"value"]; //Ironsource naming
+    NSString* countryCode = revenueDictionary[@"countryCode"];
+    NSString* adUnitName = revenueDictionary[@"adUnitName"];
+    NSString* medNetwork = revenueDictionary[@"adSource"]; //Ironsource naming
+    NSString* adType = revenueDictionary[@"adFormat"]; //Ironsource naming
+    NSString* placement = revenueDictionary[@"placement"];
+
+    AppsFlyerAdRevenueMediationNetworkType mediationNetwork = mediationNetworkTypeFromString([medNetwork uppercaseString]);
+
+    NSMutableDictionary* additionalParams = [NSMutableDictionary new];
+    [additionalParams setObject:countryCode forKey:kAppsFlyerAdRevenueCountry];
+    [additionalParams setObject:adUnitName forKey:kAppsFlyerAdRevenueAdUnit];
+    [additionalParams setObject:adType forKey:kAppsFlyerAdRevenueAdType];
+    [additionalParams setObject:placement forKey:kAppsFlyerAdRevenuePlacement];
+
+    AFAdRevenueData* adRevenueData = [[AFAdRevenueData alloc] initWithMonetizationNetwork:monetizationNetwork mediationNetwork:mediationNetwork currencyIso4217Code:currencyIso4217Code eventRevenue:revenue];
+
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [[AppsFlyerLib shared] logAdRevenue:adRevenueData additionalParameters:additionalParams];
+    }];
+
+    return 0;
 }
 
 // ============================================================================

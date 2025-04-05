@@ -67,33 +67,26 @@ subTitle:setTextColor( 0.2, 0.2, 0.2 )
 eventDataTextBox = native.newTextBox( display.contentCenterX, display.contentHeight - 50, 310, 150)
 eventDataTextBox.placeholder = "Event data will appear here"
 
+local revenueEvent = {
+  monetizationNetwork = "ironsource",
+  currencyIso4217Code = "USD",
+  value = 0.0021656780242919923,
+  countryCode = "TJ",
+  adUnitName = "da5529f386dd83cf",
+  adSource = "AppLovin",
+  adFormat = "rewardedVideo"
+}
+
 local logCustomEventButton = widget.newButton {
-  label = "Log Event",
+  label = "Log Add Revenue",
   onRelease = function(event)
-    appsflyer.logEvent("playerDied", {
-      level="1",
-      score="23451",
-      mode="expert",
-      boss="hugo",
-      weaponEmpty=true,
-      durationTimeInterval=652,
-      timeDelta=146
-    })
+    appsflyer.logRevenueAds(json.encode(revenueEvent))
 
     --[[appsflyer.logPurchase({ 
       productId = "1",
       price = "100",
       currency = "USD",
       transactionId = "2",
-      parameters = { first = "1", second = "2" }
-    })--]]
-
-    --[[appsflyer.logPurchase({ 
-      publicKey = "1",
-      signature = "2",
-      purchaseData = "3",
-      price = "100",
-      currency = "USD",
       parameters = { first = "1", second = "2" }
     })--]]
   end
