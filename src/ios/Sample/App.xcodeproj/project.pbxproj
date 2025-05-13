@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -25,8 +25,6 @@
 		6A38B56E2D76125700407037 /* CoreAudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A38B56C2D76125600407037 /* CoreAudioKit.framework */; };
 		7072FDDB2108C5B000ABDE3B /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7072FDD92108C5B000ABDE3B /* iAd.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		7072FDDC2108C5B000ABDE3B /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7072FDDA2108C5B000ABDE3B /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		70F91BD72108BAD0001CBCB5 /* AppsFlyerLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70F91BD62108BACF001CBCB5 /* AppsFlyerLib.framework */; };
-		A447B610165D72FB009EA762 /* AppCoronaDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = A447B60F165D72FB009EA762 /* AppCoronaDelegate.mm */; };
 		A447B6671666FD02009EA762 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A447B6641666FD02009EA762 /* MainWindow-iPad.xib */; };
 		A447B6681666FD02009EA762 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = A447B6651666FD02009EA762 /* MainWindow.xib */; };
 		A447B66A1666FD43009EA762 /* Corona3rdPartyLicenses.txt in Resources */ = {isa = PBXBuildFile; fileRef = A447B6691666FD43009EA762 /* Corona3rdPartyLicenses.txt */; };
@@ -37,7 +35,6 @@
 		A484112215114F700074BD57 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A484112115114F700074BD57 /* CoreGraphics.framework */; };
 		A484112615114F700074BD57 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A484112515114F700074BD57 /* OpenGLES.framework */; };
 		A484112C15114F700074BD57 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A484112A15114F700074BD57 /* InfoPlist.strings */; };
-		A484112E15114F700074BD57 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = A484112D15114F700074BD57 /* main.mm */; };
 		A484117715128D5D0074BD57 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A484116315128D5C0074BD57 /* AddressBook.framework */; };
 		A484117815128D5D0074BD57 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A484116415128D5C0074BD57 /* AddressBookUI.framework */; };
 		A484117915128D5D0074BD57 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A484116515128D5C0074BD57 /* AudioToolbox.framework */; };
@@ -63,49 +60,25 @@
 		A4C2449A1683FA5300C395D1 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C244971683FA5300C395D1 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		A4C2449C1683FA5300C395D1 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C244991683FA5300C395D1 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		A4E2537F166AE3DC00DCDC2C /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4E2537E166AE3DC00DCDC2C /* Twitter.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		C22C1E4B1E981D9000D74196 /* LaunchScreen.storyboardc in Resources */ = {isa = PBXBuildFile; fileRef = C22C1E4A1E981D9000D74196 /* LaunchScreen.storyboardc */; };
 		E640B2F21BFC00B00031FAE9 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E640B2F11BFC00B00031FAE9 /* AssetsLibrary.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		E640B2F41BFC00BA0031FAE9 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E640B2F31BFC00BA0031FAE9 /* Photos.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		F51C66D61EE0D3B20040E4BE /* libplugin_appsflyer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4E253E2166DE7C800DCDC2C /* libplugin_appsflyer.a */; };
-		F56457D91FA108F500EC8C29 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F56712391F73451B006B502D /* Images.xcassets */; };
+		E87300692DD2A5360003042D /* LaunchScreen.storyboardc in Resources */ = {isa = PBXBuildFile; fileRef = E87300682DD2A5360003042D /* LaunchScreen.storyboardc */; };
+		E873006B2DD2A5530003042D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E873006A2DD2A5530003042D /* Images.xcassets */; };
+		E87300732DD2A7CF0003042D /* _CoronaSplashScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = E87300722DD2A7CF0003042D /* _CoronaSplashScreen.png */; };
 		F5BB41531BC42ACF0033F6FA /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5BB41521BC42ACF0033F6FA /* CoreText.framework */; };
-		F5C9F4811ED39AD100D34A2D /* _CoronaSplashScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = C277D3B51EBB9F8E00966BA1 /* _CoronaSplashScreen.png */; };
 		F5E548091BE7FF0200091810 /* GameController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5E548081BE7FF0200091810 /* GameController.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		A4E253E1166DE7C800DCDC2C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A4E253DA166DE7C800DCDC2C /* Plugin.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = A4E253B6166D6FB300DCDC2C;
-			remoteInfo = plugin_library;
-		};
-		A4E253E3166DE7D800DCDC2C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A4E253DA166DE7C800DCDC2C /* Plugin.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = A4E253B5166D6FB300DCDC2C;
-			remoteInfo = plugin_library;
-		};
-		DB8665AD28B2F4AB003247D3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A4E253DA166DE7C800DCDC2C /* Plugin.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = DB86659F28B2C748003247D3;
-			remoteInfo = plugin_appsflyerStrict;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
+		319F66E7BE880229BE08926F /* Pods-AppsFlyerSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppsFlyerSample.debug.xcconfig"; path = "Target Support Files/Pods-AppsFlyerSample/Pods-AppsFlyerSample.debug.xcconfig"; sourceTree = "<group>"; };
+		5F54C0FAAB87B264A40B9C76 /* Pods-AppsFlyerSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppsFlyerSample.release.xcconfig"; path = "Target Support Files/Pods-AppsFlyerSample/Pods-AppsFlyerSample.release.xcconfig"; sourceTree = "<group>"; };
 		6A38B5692D7611E700407037 /* CoreAudioTypes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudioTypes.framework; path = System/Library/Frameworks/CoreAudioTypes.framework; sourceTree = SDKROOT; };
 		6A38B56B2D76125600407037 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		6A38B56C2D76125600407037 /* CoreAudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudioKit.framework; path = System/Library/Frameworks/CoreAudioKit.framework; sourceTree = SDKROOT; };
 		7072FDD92108C5B000ABDE3B /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		7072FDDA2108C5B000ABDE3B /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		70F91BD62108BACF001CBCB5 /* AppsFlyerLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppsFlyerLib.framework; path = EmbeddedFrameworks/AppsFlyerLib.framework; sourceTree = "<group>"; };
-		A447B60E165D72FB009EA762 /* AppCoronaDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppCoronaDelegate.h; sourceTree = SOURCE_ROOT; };
-		A447B60F165D72FB009EA762 /* AppCoronaDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppCoronaDelegate.mm; sourceTree = SOURCE_ROOT; };
+		8064A0B9FADA03CA6369D75E /* Pods_AppsFlyerSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppsFlyerSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A447B6641666FD02009EA762 /* MainWindow-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "MainWindow-iPad.xib"; path = "Corona/ios/resource/MainWindow-iPad.xib"; sourceTree = "<group>"; };
 		A447B6651666FD02009EA762 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainWindow.xib; path = Corona/ios/resource/MainWindow.xib; sourceTree = "<group>"; };
 		A447B6691666FD43009EA762 /* Corona3rdPartyLicenses.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Corona3rdPartyLicenses.txt; path = Corona/shared/resource/Corona3rdPartyLicenses.txt; sourceTree = "<group>"; };
@@ -119,7 +92,6 @@
 		A484112515114F700074BD57 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		A484112915114F700074BD57 /* App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "App-Info.plist"; sourceTree = SOURCE_ROOT; };
 		A484112B15114F700074BD57 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		A484112D15114F700074BD57 /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = SOURCE_ROOT; };
 		A484112F15114F700074BD57 /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = SOURCE_ROOT; };
 		A484116315128D5C0074BD57 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		A484116415128D5C0074BD57 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
@@ -146,19 +118,21 @@
 		A4C244971683FA5300C395D1 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		A4C244991683FA5300C395D1 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		A4E2537E166AE3DC00DCDC2C /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
-		A4E253DA166DE7C800DCDC2C /* Plugin.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Plugin.xcodeproj; sourceTree = "<group>"; };
-		C22C1E4A1E981D9000D74196 /* LaunchScreen.storyboardc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.storyboardc; name = LaunchScreen.storyboardc; path = ../Corona/LaunchScreen.storyboardc; sourceTree = "<group>"; };
-		C277D3B51EBB9F8E00966BA1 /* _CoronaSplashScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = _CoronaSplashScreen.png; sourceTree = "<group>"; };
 		E640B2F11BFC00B00031FAE9 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		E640B2F31BFC00BA0031FAE9 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
+		E87300682DD2A5360003042D /* LaunchScreen.storyboardc */ = {isa = PBXFileReference; lastKnownFileType = wrapper.storyboardc; path = LaunchScreen.storyboardc; sourceTree = "<group>"; };
+		E873006A2DD2A5530003042D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		E87300722DD2A7CF0003042D /* _CoronaSplashScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = _CoronaSplashScreen.png; sourceTree = "<group>"; };
 		F54A40BD1EE07F9100AF417D /* build.settings */ = {isa = PBXFileReference; lastKnownFileType = text; name = build.settings; path = ../Corona/build.settings; sourceTree = "<group>"; };
 		F54A40BE1EE07F9100AF417D /* config.lua */ = {isa = PBXFileReference; lastKnownFileType = text; name = config.lua; path = ../Corona/config.lua; sourceTree = "<group>"; };
 		F55829801ED23E1200E5808C /* CoronaApp.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = CoronaApp.xcconfig; sourceTree = "<group>"; };
-		F56712391F73451B006B502D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Corona/Images.xcassets; sourceTree = "<group>"; };
-		F572F8191EE06E45001BC814 /* CoronaNative.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = CoronaNative.xcconfig; sourceTree = "<group>"; };
 		F5BB41521BC42ACF0033F6FA /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		F5E548081BE7FF0200091810 /* GameController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameController.framework; path = System/Library/Frameworks/GameController.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		E873006F2DD2A58F0003042D /* src */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = src; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		A484111615114F700074BD57 /* Frameworks */ = {
@@ -167,8 +141,6 @@
 			files = (
 				7072FDDB2108C5B000ABDE3B /* iAd.framework in Frameworks */,
 				7072FDDC2108C5B000ABDE3B /* AdSupport.framework in Frameworks */,
-				F51C66D61EE0D3B20040E4BE /* libplugin_appsflyer.a in Frameworks */,
-				70F91BD72108BAD0001CBCB5 /* AppsFlyerLib.framework in Frameworks */,
 				E640B2F41BFC00BA0031FAE9 /* Photos.framework in Frameworks */,
 				E640B2F21BFC00B00031FAE9 /* AssetsLibrary.framework in Frameworks */,
 				F5BB41531BC42ACF0033F6FA /* CoreText.framework in Frameworks */,
@@ -211,10 +183,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C2DA3DFD084CEDC422C10BF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				319F66E7BE880229BE08926F /* Pods-AppsFlyerSample.debug.xcconfig */,
+				5F54C0FAAB87B264A40B9C76 /* Pods-AppsFlyerSample.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		A447B66F16670015009EA762 /* CoronaNative */ = {
 			isa = PBXGroup;
 			children = (
-				F572F8191EE06E45001BC814 /* CoronaNative.xcconfig */,
 				F55829801ED23E1200E5808C /* CoronaApp.xcconfig */,
 				A4841153151161300074BD57 /* resource */,
 			);
@@ -234,12 +214,13 @@
 		A484110E15114F700074BD57 = {
 			isa = PBXGroup;
 			children = (
-				A4E253DA166DE7C800DCDC2C /* Plugin.xcodeproj */,
+				E873006F2DD2A58F0003042D /* src */,
 				A484112715114F700074BD57 /* App */,
 				A447B823166856C7009EA762 /* Corona */,
 				A447B66F16670015009EA762 /* CoronaNative */,
 				A484111C15114F700074BD57 /* Frameworks */,
 				A484111A15114F700074BD57 /* Products */,
+				4C2DA3DFD084CEDC422C10BF /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -294,6 +275,7 @@
 				A484117615128D5D0074BD57 /* SystemConfiguration.framework */,
 				A4E2537E166AE3DC00DCDC2C /* Twitter.framework */,
 				A484111D15114F700074BD57 /* UIKit.framework */,
+				8064A0B9FADA03CA6369D75E /* Pods_AppsFlyerSample.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -301,15 +283,12 @@
 		A484112715114F700074BD57 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				F56712391F73451B006B502D /* Images.xcassets */,
-				C277D3B51EBB9F8E00966BA1 /* _CoronaSplashScreen.png */,
+				E873006A2DD2A5530003042D /* Images.xcassets */,
+				E87300682DD2A5360003042D /* LaunchScreen.storyboardc */,
+				E87300722DD2A7CF0003042D /* _CoronaSplashScreen.png */,
 				A484112915114F700074BD57 /* App-Info.plist */,
 				A484112A15114F700074BD57 /* InfoPlist.strings */,
-				C22C1E4A1E981D9000D74196 /* LaunchScreen.storyboardc */,
-				A484112D15114F700074BD57 /* main.mm */,
 				A484112F15114F700074BD57 /* Prefix.pch */,
-				A447B60E165D72FB009EA762 /* AppCoronaDelegate.h */,
-				A447B60F165D72FB009EA762 /* AppCoronaDelegate.mm */,
 			);
 			name = App;
 			sourceTree = "<group>";
@@ -326,15 +305,6 @@
 			path = "$HOME/Library/Application Support/Corona/Native";
 			sourceTree = "<absolute>";
 		};
-		A4E253DB166DE7C800DCDC2C /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				A4E253E2166DE7C800DCDC2C /* libplugin_appsflyer.a */,
-				DB8665AE28B2F4AB003247D3 /* libplugin_appsflyerStrict.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -342,6 +312,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A484114215114F700074BD57 /* Build configuration list for PBXNativeTarget "AppsFlyerSample" */;
 			buildPhases = (
+				35F479B6BD02CF8596B0ACCE /* [CP] Check Pods Manifest.lock */,
 				C28A3B451EE9F8FD00F08609 /* Corona Native */,
 				A484111715114F700074BD57 /* Resources */,
 				A484111515114F700074BD57 /* Sources */,
@@ -350,11 +321,14 @@
 				A484118B15128E320074BD57 /* build.settings to Info.plist */,
 				A484118F1512906B0074BD57 /* Certify Corona Build */,
 				A484119015129A930074BD57 /* Touch main.mm to ensure build */,
+				B407E6A99BB812983EE3DB23 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				A4E253E4166DE7D800DCDC2C /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				E873006F2DD2A58F0003042D /* src */,
 			);
 			name = AppsFlyerSample;
 			productName = App;
@@ -390,12 +364,6 @@
 			mainGroup = A484110E15114F700074BD57;
 			productRefGroup = A484111A15114F700074BD57 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = A4E253DB166DE7C800DCDC2C /* Products */;
-					ProjectRef = A4E253DA166DE7C800DCDC2C /* Plugin.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				A484111815114F700074BD57 /* AppsFlyerSample */,
@@ -404,42 +372,47 @@
 		};
 /* End PBXProject section */
 
-/* Begin PBXReferenceProxy section */
-		A4E253E2166DE7C800DCDC2C /* libplugin_appsflyer.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libplugin_appsflyer.a;
-			remoteRef = A4E253E1166DE7C800DCDC2C /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		DB8665AE28B2F4AB003247D3 /* libplugin_appsflyerStrict.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libplugin_appsflyerStrict.a;
-			remoteRef = DB8665AD28B2F4AB003247D3 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
-
 /* Begin PBXResourcesBuildPhase section */
 		A484111715114F700074BD57 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E873006B2DD2A5530003042D /* Images.xcassets in Resources */,
 				A484112C15114F700074BD57 /* InfoPlist.strings in Resources */,
-				F56457D91FA108F500EC8C29 /* Images.xcassets in Resources */,
+				E87300692DD2A5360003042D /* LaunchScreen.storyboardc in Resources */,
 				A447B6671666FD02009EA762 /* MainWindow-iPad.xib in Resources */,
+				E87300732DD2A7CF0003042D /* _CoronaSplashScreen.png in Resources */,
 				A447B6681666FD02009EA762 /* MainWindow.xib in Resources */,
-				F5C9F4811ED39AD100D34A2D /* _CoronaSplashScreen.png in Resources */,
 				A447B66A1666FD43009EA762 /* Corona3rdPartyLicenses.txt in Resources */,
 				A498B81A16D70EFC0091A148 /* CoronaResources.bundle in Resources */,
-				C22C1E4B1E981D9000D74196 /* LaunchScreen.storyboardc in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		35F479B6BD02CF8596B0ACCE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AppsFlyerSample-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		A4841162151268030074BD57 /* Compile Corona Project */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -500,6 +473,26 @@
 			shellScript = "# Ensures that next attempt to build actually rebuilds the executable so it can be (re)app_sign(ed)\necho \"Updating modification time of $PROJECT_DIR/main.mm to trigger relink of $BUILT_PRODUCTS_DIR/$EXECUTABLE_PATH\"\necho \"We need to do this b/c app_sign can only sign an unsigned executable.\"\ntouch \"$PROJECT_DIR/main.mm\"";
 			showEnvVarsInLog = 0;
 		};
+		B407E6A99BB812983EE3DB23 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AppsFlyerSample/Pods-AppsFlyerSample-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/AppsFlyerFramework/AppsFlyerLib_Privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/PurchaseConnector/PurchaseConnector_Privacy.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AppsFlyerLib_Privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/PurchaseConnector_Privacy.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AppsFlyerSample/Pods-AppsFlyerSample-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		C28A3B451EE9F8FD00F08609 /* Corona Native */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -538,20 +531,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A484112E15114F700074BD57 /* main.mm in Sources */,
-				A447B610165D72FB009EA762 /* AppCoronaDelegate.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		A4E253E4166DE7D800DCDC2C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = plugin_library;
-			targetProxy = A4E253E3166DE7D800DCDC2C /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		A484112A15114F700074BD57 /* InfoPlist.strings */ = {
@@ -567,6 +550,7 @@
 /* Begin XCBuildConfiguration section */
 		A484114015114F700074BD57 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F55829801ED23E1200E5808C /* CoronaApp.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -621,6 +605,7 @@
 		};
 		A484114115114F700074BD57 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F55829801ED23E1200E5808C /* CoronaApp.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -668,7 +653,7 @@
 		};
 		A484114315114F700074BD57 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F55829801ED23E1200E5808C /* CoronaApp.xcconfig */;
+			baseConfigurationReference = 319F66E7BE880229BE08926F /* Pods-AppsFlyerSample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -701,7 +686,7 @@
 		};
 		A484114415114F700074BD57 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F55829801ED23E1200E5808C /* CoronaApp.xcconfig */;
+			baseConfigurationReference = 5F54C0FAAB87B264A40B9C76 /* Pods-AppsFlyerSample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -734,7 +719,7 @@
 		};
 		F597AC701ED8CA3E0085F5E5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F572F8191EE06E45001BC814 /* CoronaNative.xcconfig */;
+			baseConfigurationReference = 5F54C0FAAB87B264A40B9C76 /* Pods-AppsFlyerSample.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				DEVELOPMENT_TEAM = BG2J43EA88;
@@ -744,7 +729,7 @@
 		};
 		F597AC711ED8CA3E0085F5E5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F572F8191EE06E45001BC814 /* CoronaNative.xcconfig */;
+			baseConfigurationReference = 5F54C0FAAB87B264A40B9C76 /* Pods-AppsFlyerSample.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				DEVELOPMENT_TEAM = BG2J43EA88;

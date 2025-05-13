@@ -1,0 +1,25 @@
+PODS:
+  - AppsFlyerFramework (6.16.2):
+    - AppsFlyerFramework/Main (= 6.16.2)
+  - AppsFlyerFramework/Main (6.16.2)
+  - PurchaseConnector (6.16.2):
+    - PurchaseConnector/Main (= 6.16.2)
+  - PurchaseConnector/Main (6.16.2):
+    - AppsFlyerFramework (= 6.16.2)
+
+DEPENDENCIES:
+  - AppsFlyerFramework (~> 6.16.2)
+  - PurchaseConnector (~> 6.16.2)
+
+SPEC REPOS:
+  trunk:
+    - AppsFlyerFramework
+    - PurchaseConnector
+
+SPEC CHECKSUMS:
+  AppsFlyerFramework: fe5303bffcdfd941d5f570c2d21eaaea982e7bdc
+  PurchaseConnector: 9c0d645e7cc10250edbdc27eb0541ebfe4e1eeb3
+
+PODFILE CHECKSUM: f03eec04fb7cbd6088f79baf7d346d5ff895d612
+
+COCOAPODS: 1.16.2

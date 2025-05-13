@@ -1,4 +1,5 @@
 // This file contains basic setup for Corona Native apps and plugins
+#include "../Sample/Pods/Target Support Files/Pods-plugin_appsflyer/Pods-plugin_appsflyer.release.xcconfig"
 
 CORONA_ROOT=$HOME/Library/Application Support/Corona/Native
 

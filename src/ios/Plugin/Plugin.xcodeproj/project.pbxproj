@@ -3,14 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		70F91BD42108BA90001CBCB5 /* AppsFlyerPlugin.mm in Sources */ = {isa = PBXBuildFile; fileRef = 70F91BD12108BA8F001CBCB5 /* AppsFlyerPlugin.mm */; };
-		70F91BD52108BA90001CBCB5 /* CoronaAppsFlyerDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 70F91BD32108BA90001CBCB5 /* CoronaAppsFlyerDelegate.mm */; };
-		DB86659828B2C748003247D3 /* AppsFlyerPlugin.mm in Sources */ = {isa = PBXBuildFile; fileRef = 70F91BD12108BA8F001CBCB5 /* AppsFlyerPlugin.mm */; };
-		DB86659928B2C748003247D3 /* CoronaAppsFlyerDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 70F91BD32108BA90001CBCB5 /* CoronaAppsFlyerDelegate.mm */; };
+		2F33F868BABA5BC2D50C75E8 /* Pods_plugin_appsflyer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF1603A1750F696846BE403F /* Pods_plugin_appsflyer.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -35,20 +32,24 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		70F91BCF2108BA8F001CBCB5 /* AppsFlyerPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppsFlyerPlugin.h; path = Plugin/AppsFlyerPlugin.h; sourceTree = "<group>"; };
-		70F91BD02108BA8F001CBCB5 /* CoronaAppsFlyerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoronaAppsFlyerDelegate.h; path = Plugin/CoronaAppsFlyerDelegate.h; sourceTree = "<group>"; };
-		70F91BD12108BA8F001CBCB5 /* AppsFlyerPlugin.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppsFlyerPlugin.mm; path = Plugin/AppsFlyerPlugin.mm; sourceTree = "<group>"; };
-		70F91BD32108BA90001CBCB5 /* CoronaAppsFlyerDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CoronaAppsFlyerDelegate.mm; path = Plugin/CoronaAppsFlyerDelegate.mm; sourceTree = "<group>"; };
+		4E0C9F76DE5E2442B5B16513 /* Pods-plugin_appsflyer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-plugin_appsflyer.release.xcconfig"; path = "Target Support Files/Pods-plugin_appsflyer/Pods-plugin_appsflyer.release.xcconfig"; sourceTree = "<group>"; };
 		A4E253B6166D6FB300DCDC2C /* libplugin_appsflyer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libplugin_appsflyer.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF1603A1750F696846BE403F /* Pods_plugin_appsflyer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_plugin_appsflyer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB86659F28B2C748003247D3 /* libplugin_appsflyerStrict.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libplugin_appsflyerStrict.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		E43EE557FAF3CE4EA2FA1E6C /* Pods-plugin_appsflyer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-plugin_appsflyer.debug.xcconfig"; path = "Target Support Files/Pods-plugin_appsflyer/Pods-plugin_appsflyer.debug.xcconfig"; sourceTree = "<group>"; };
 		F572F81A1EE0705B001BC814 /* CoronaNative.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = CoronaNative.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		E87300632DD2A45D0003042D /* src */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = src; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		A4E253B3166D6FB300DCDC2C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F33F868BABA5BC2D50C75E8 /* Pods_plugin_appsflyer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,23 +63,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A447B609165D72A6009EA762 /* Source */ = {
-			isa = PBXGroup;
-			children = (
-				70F91BCF2108BA8F001CBCB5 /* AppsFlyerPlugin.h */,
-				70F91BD12108BA8F001CBCB5 /* AppsFlyerPlugin.mm */,
-				70F91BD02108BA8F001CBCB5 /* CoronaAppsFlyerDelegate.h */,
-				70F91BD32108BA90001CBCB5 /* CoronaAppsFlyerDelegate.mm */,
-			);
-			name = Source;
-			sourceTree = "<group>";
-		};
 		A484110E15114F700074BD57 = {
 			isa = PBXGroup;
 			children = (
-				A447B609165D72A6009EA762 /* Source */,
+				E87300632DD2A45D0003042D /* src */,
 				F54A40C01EE083A300AF417D /* CoronaNative */,
 				A484111A15114F700074BD57 /* Products */,
+				FB464599985DF73BA1A7DC6A /* Pods */,
+				B10EF0719FB08ABA62530B92 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -91,12 +83,30 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		B10EF0719FB08ABA62530B92 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CF1603A1750F696846BE403F /* Pods_plugin_appsflyer.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F54A40C01EE083A300AF417D /* CoronaNative */ = {
 			isa = PBXGroup;
 			children = (
 				F572F81A1EE0705B001BC814 /* CoronaNative.xcconfig */,
 			);
 			name = CoronaNative;
+			sourceTree = "<group>";
+		};
+		FB464599985DF73BA1A7DC6A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E43EE557FAF3CE4EA2FA1E6C /* Pods-plugin_appsflyer.debug.xcconfig */,
+				4E0C9F76DE5E2442B5B16513 /* Pods-plugin_appsflyer.release.xcconfig */,
+			);
+			name = Pods;
+			path = ../Sample/Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -106,6 +116,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A4E253BF166D6FB300DCDC2C /* Build configuration list for PBXNativeTarget "plugin_appsflyer" */;
 			buildPhases = (
+				F80BDDC9B8DF7BC1D50739F5 /* [CP] Check Pods Manifest.lock */,
 				C2E70B581EE9F110006E4570 /* Corona Native */,
 				A4E253B2166D6FB300DCDC2C /* Sources */,
 				A4E253B3166D6FB300DCDC2C /* Frameworks */,
@@ -114,6 +125,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				E87300632DD2A45D0003042D /* src */,
 			);
 			name = plugin_appsflyer;
 			productName = plugin_library;
@@ -132,6 +146,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				E87300632DD2A45D0003042D /* src */,
 			);
 			name = plugin_appsflyerStrict;
 			productName = plugin_library;
@@ -196,6 +213,28 @@
 			shellScript = "# echo \"CORONA_ROOT: ${CORONA_ROOT}\"\nif [ ! -d \"${CORONA_ROOT}\" ]\nthen\n    echo \"error: Corona Native has not been setup.  Run 'Native/SetupCoronaNative.app' in your Corona install to set it up\" >&2\n\n    exit 1\nelse\n    echo \"Building with Corona Native from $(readlink \"${CORONA_ROOT}\")\"\nfi";
 			showEnvVarsInLog = 0;
 		};
+		F80BDDC9B8DF7BC1D50739F5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-plugin_appsflyer-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -203,8 +242,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				70F91BD42108BA90001CBCB5 /* AppsFlyerPlugin.mm in Sources */,
-				70F91BD52108BA90001CBCB5 /* CoronaAppsFlyerDelegate.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,8 +249,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DB86659828B2C748003247D3 /* AppsFlyerPlugin.mm in Sources */,
-				DB86659928B2C748003247D3 /* CoronaAppsFlyerDelegate.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,6 +358,7 @@
 		};
 		A4E253C0166D6FB300DCDC2C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E43EE557FAF3CE4EA2FA1E6C /* Pods-plugin_appsflyer.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -330,9 +366,15 @@
 				DSTROOT = /tmp/plugin_library.dst;
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREPROCESSOR_DEFINITIONS = "PLUGIN_STRICT=0";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"PLUGIN_STRICT=0",
+					"$(inherited)",
+				);
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"$(inherited)",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -340,6 +382,7 @@
 		};
 		A4E253C1166D6FB300DCDC2C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4E0C9F76DE5E2442B5B16513 /* Pods-plugin_appsflyer.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -347,9 +390,15 @@
 				DSTROOT = /tmp/plugin_library.dst;
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREPROCESSOR_DEFINITIONS = "PLUGIN_STRICT=0";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"PLUGIN_STRICT=0",
+					"$(inherited)",
+				);
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"$(inherited)",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
