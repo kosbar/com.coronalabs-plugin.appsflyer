@@ -18,7 +18,7 @@
 // Plugin specific imports
 #import "AppsFlyerPlugin.h"
 #import <AppsFlyerLib/AppsFlyerLib.h>
-
+#import <PurchaseConnector/PurchaseConnector.h>
 
 // some macros to make life easier, and code more readable
 #define UTF8StringWithFormat(format, ...) [[NSString stringWithFormat:format, ##__VA_ARGS__] UTF8String]
@@ -96,7 +96,7 @@ static const char EVENT_DATA_KEY[]  = "data";
 // plugin class and delegate definitions
 // ----------------------------------------------------------------------------
 
-@interface AppsFlyerDelegate: NSObject <AppsFlyerLibDelegate>
+@interface AppsFlyerDelegate: NSObject <AppsFlyerLibDelegate, AppsFlyerPurchaseRevenueDataSource, AppsFlyerPurchaseRevenueDelegate>
 
 @property (nonatomic, assign) CoronaLuaRef coronaListener;             // Reference to the Lua listener
 @property (nonatomic, assign) id<CoronaRuntime> coronaRuntime;         // Pointer to the Corona runtime
@@ -106,6 +106,7 @@ static const char EVENT_DATA_KEY[]  = "data";
 @end
 
 // ----------------------------------------------------------------------------
+
 
 class AppsFlyerPlugin
 {
@@ -405,6 +406,13 @@ AppsFlyerPlugin::init(lua_State *L)
     [AppsFlyerLib shared].isDebug = debugMode;
     [[AppsFlyerLib shared] waitForATTUserAuthorizationWithTimeoutInterval:60.0];
     [[AppsFlyerLib shared] start];
+
+    [[PurchaseConnector shared] setPurchaseRevenueDelegate:appsflyerDelegate];
+    [[PurchaseConnector shared] setPurchaseRevenueDataSource:appsflyerDelegate];
+    [[PurchaseConnector shared] startObservingTransactions];
+    [[PurchaseConnector shared] setAutoLogPurchaseRevenue:
+     AFSDKAutoLogPurchaseRevenueOptionsAutoRenewableSubscriptions | AFSDKAutoLogPurchaseRevenueOptionsInAppPurchases];
+
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
         // send Corona Lua event
         NSDictionary *coronaEvent = @{
